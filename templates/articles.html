@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+<!--Part 1 @22:05 we are going to be creating an articles page and we are going to be looping through.-->
+{% block body %}
+  <h1>Articles</h1>
+<!--Part 1 @23:05 Under that we are going to be doing a for loop and we are going to be using these percentage symbols, also when we use the percentage we are using a form of logic, when we want to put in variable or dynamic value, we insert in the "{+{". so inside the logic, we will be inserting a for loop. @23:55 so the "articles" in "for article in articles" is the articles from app.py, which includes the data that is coming from "from data import Articles" and its made variable.  -->
+  {% for article in articles %}
+  <!--Part 1 We use article that is being passed through in app.py, and we use that to point out what we want to use. In this it's the name of the articles! -->
+  <!--Part 1 @24:31 we are goign to be putting these in a ul and this is going to allow us to organize it better. Then give it a bootstrap class of "list-group".  -->
+  <ul class = 'list-group'>
+    <!--Part 1 @24:50 They are going to wrap a class of list group item and we want each of the item there to be linked to a link so we wrap them in an "a" tag. we want remember the two-double "{" symbols are pointing to a varible that would be dynamic. Then when we save, and click on it. We see that it goes to whatever that articles "id" is and thats how we do it "dynamically". We also need to create a route for this. For this, we need to go back to app.py-->
+    <li class = 'list-group-item'><a href="article/{{article.id}}">{{article.title}}</a></li>
+    
+  </ul>
+  {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+<!--part 2  @29:45 He goes to documentation in flask to do a messaging with categories "flask.pocoo.org/docs/0.12/poatterns/flashing/"(https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/) and he just grabs the template from there, which is in the "Flashing With Categories". We change the template because we don't want these to be in a "ul". and we change the li to a div. For class we want alert from bootstrap and we pass in the category. so it would be alert "success" and if we want it in red, we want "alert danger" for bootstrap. so you want to pass in "danger" as the category. @31:00 now we want to put this in the layout (go to layout.html)-->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<!--part 3  @11:18 if there is an error we will alert them and display the error message. -->
+{% if error %}
+  <div class = "alert alert-danger"> {{ error }}</div>
+{% endif %}
+
+<!--part 3  @12:02 We also want to send a success message, @12:42 We want to add a login to the navbar (go to _navbar.html)-->
+
+{% if msg %}
+  <div class = "alert alert-success"> {{ msg }} </div>
+{% endif %}

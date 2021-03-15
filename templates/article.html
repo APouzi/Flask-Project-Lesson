@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+<!-- Part 1 @27:11 So we are extending the layout to here, then we have the body blocks, and we have the h1 being created based on the id being passed in.  -->
+{% block body %}
+<!--Part 4 @21:35 Change this to article.title from "id". @21:44 he tries it and it displays title-->
+  <h1>{{article.title}}</h1>
+<!--Part 4 @21:45 In addition to the title, we want author and date  -->
+<small>Written by {{article.author}} on {{article.create_date}}</small>
+<hr>
+<div>
+  <!-- We put safe here because if we dont. when we view the article as a page. We the marks for "<p>" in the ckeditor -->
+  {{article.body | safe}}
+</div>
+{% endblock %}
+
+<!--Part 4 @23:20 We lastly want to put our buttons in the home.html (go to home.html) -->

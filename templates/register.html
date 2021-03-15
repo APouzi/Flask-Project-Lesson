@@ -1,0 +1,32 @@
+<!-- REGISTER -->
+<!--part 2  @15:17 copy and paste the boilerplate we made-->
+{% extends 'layout.html' %}
+<!--part 2  We will put in the h1. to register -->
+{% block body %}
+  <h1>Register</h1>
+<!--part 2  @19:29 we got a render_field not defined. This is because we have to include the formhelper in here. After running it we see that everything works. So we go back to app.py -->
+  {% from 'includes/_formhelpers.html' import render_field %}
+
+<!--part 2  @15:50 we can make a form, inside of it, it will have a method of "POST" and then action will be blank because it will automatically post -->
+  <form method="POST" action="">
+<!--part 2 @16:00 Inside the form, we will be making a div with a class of form-group and we are not going to be putting in the input tags we will be using the wt-form syntax, if we want to add a class as he says, we just put that in there.Then we copy and paste the first div a few times  -->
+    <div class="form-group">
+      {{render_field(form.name, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.email, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.username, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.password, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.confirm, class_="form-control")}}
+    </div>
+<!--part 2  @17:18 Now we need a button at the bottom, we also want to add a class of btn btn-primary which is a bootstrap class -->
+    <p><input type="submit" value = "submit" class="btn btn-primary"></p>
+  </form>
+{% endblock %}
+<!--part 2  @17:40  we also need a form helper,and thats going to define how each field looks. Whether it has a label or we want to add extra classes. From the wt-forms page -->

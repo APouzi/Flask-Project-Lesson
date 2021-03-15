@@ -1,0 +1,24 @@
+
+<!--part 3  @7:30 Now with this template he just pastes it in.  -->
+
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Login</h1>
+<!--part 3  @7:39 We include the messages just in case there is any messages-->
+
+<!--We then have a form with the method of post. -->
+  <form action="" method="POST">
+    <div class="form-group">
+      <label>Username</label>
+<!--part 3  With the value we are putting in the request.form.username in case something happens like a refresh, the username stays and same with the password. @8:06 lets go back to (app.py) -->
+      <input type="text" name="username" class="form-control" value={{request.form.username}}>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" value={{request.form.password}}>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

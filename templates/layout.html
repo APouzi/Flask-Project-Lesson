@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyFlaskApp</title>
+  <!--Part 1 bootstrap cdn css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  {% include 'includes/_navbar.html' %}
+
+  <!--  -->
+  <div class = "container">
+
+<!--part 2  @31:00 now we include the flash message. @31:42 After this we want to include a register button, so we go to navbar.(go to _navbar.html) -->
+{% include 'includes/_messages.html' %}
+
+
+  <!--Part 1 in there we have can include the general tags "!!!" shortcut, then title it "my flask app" and we can include the scripts or whatever you want in here. Along with that we are going to be including. In the body we want to include "{percentage sign}(cant include symbols below in comments)" and type in the following:   -->
+  {% block body %}{% endblock %}
+  <!--Part 1 Now that we have this block, we can extend out content into the two blocks from the home file. and have the layout "wrap" it @12:31 go to home.html-->
+</div>
+
+
+
+  <!--Part 1 We then want to include the JS CDN and paste it in the script tag -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!--Part 1 @15:07 the other thing we want on here is a navbar, we want to put it in the layout because its going to show on every page. Instead of putting all the markup in the layout, we are going to have a "include", so make a folder in templates and call it includes, then make a file called "_navbar.html" and use underscopre because its a partial file. (go to _navbar.html) -->
+
+<!--Part 4 @12:03 We go here and past in the ckeditor cdn. Then all we should have to do is put a script tag with the type of text/javascript, then do CKEDITOR.replace with the tag we want to be replacing.@12:46 Then we want to go back to "add_article.html". -->
+  <script src="//cdn.ckeditor.com/4.16.0/basic/ckeditor.js"></script>
+  <script type = "text/javascript">
+      CKEDITOR.replace('editor')
+  </script>
+</body>
+</html>

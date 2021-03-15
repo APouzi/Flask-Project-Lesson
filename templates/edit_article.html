@@ -1,0 +1,15 @@
+<!-- @6:07 The add_article is closest to this, copy it, paste it and change the "Add Article to Edit Article"-->
+{%extends 'layout.html' %}
+{% block body %}
+  <h1>Edit Article</h1>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method = "POST" action="">
+    <div class = "form-group">
+      {{ render_field(form.title, class_= "form-control") }}  
+    </div>
+    <div class ="form-group">
+      {{ render_field(form.body, class_="form-control", id = "editor") }}
+    </div>
+    <p><input class = "btn btn-primary" type="submit" value="Submit">
+  </form>
+{% endblock %}

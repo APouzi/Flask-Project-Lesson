@@ -1,0 +1,21 @@
+<!--Part 1 @12:45 we now extend it -->
+{% extends 'layout.html' %}
+
+<!--Part 1 Now we want those block tags for body and end -->
+{% block body %}
+<!--Part 1 @17:35 instead of having a random string we will now input the following: 
+for more infor on jumbotron: https://getbootstrap.com/docs/4.0/components/jumbotron/.-->
+  <div class="jumbotron text-center">
+  <h1>Welcome to my first flask app</h1>
+  <hr class="my-4">
+  <p class = 'lead'> This is my first application and this is built on flask</p>
+  <!-- part 4 @23:46 Gonna add some logic for the buttons, essentially if we are not logged in, we show the buttons -->
+  {% if session.logged_in == NULL  %}
+      <a href="/register" class ="btn btn-primary btn-lg">Register</a>
+      <a href="/login" class ="btn btn-success btn-lg">Login</a>
+  {% endif %}
+  </div>
+{% endblock %}
+<!--Part 1 @13:24 after running it we see "HOME" as we wrote in and in the title we see "my flask app", it essentially means that we dont have to repeat this stuff on every single view. Now we are going to use bootstrap for this, originally he wanted to use the flask bootstrap but apparently its allittle weird as he says. So go to "bootstrapcdn.com", collect the CSS cdn, copy and paste, then we go to layout.html. and link it.-->
+
+<!--Part 1 @17:35 now we are going to add in the "about" route.so go into the app.py -->

@@ -1,0 +1,10 @@
+<!--Part 1 18:40 copy what we have in homeand this is going to be the "core structure" of all our pages and get rid of the contents inside the "block body" and "endblock"-->
+{% extends 'layout.html' %}
+
+<!--Part 1 Inside this block we have an h1, and lorem dummy text (lorem+tab) after this we can go to about-->
+{% block body %}
+  <h1>About Us</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium maiores fugiat eius excepturi doloribus obcaecati tenetur aut expedita nihil alias, dignissimos, officia deserunt autem nulla placeat animi quasi consequatur voluptas?</p>
+{% endblock %}
+
+<!--Part 1 @19:47 he creates a new file called data.py that we will have articles to pull from, we will do a MySQL server later.(go to data.py->

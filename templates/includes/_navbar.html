@@ -1,0 +1,39 @@
+<!--Part 1 @15:39 Now we are going to getbootstrap.com, go to "examples, then go to "starter template". hit "ctrl+u" and grab the nav tag. Now the rest of the video uses some antiqueted code from bootstrap that bootstrap seems to have an issue with. So I went to examples and then  grab a nav tag from the nav bars-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Twelfth navbar example">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="navbarsExample10">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <!--Part 1 we used the "/" symbol because of we assigning it as a variable in app.py. -->
+          <a class="navbar-brand" aria-current="page" href="/">My Flask App</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href = "/articles">Articles</a>
+        </li>
+      </ul>
+
+<!--part 2 @31:59 This is where we decided to put the navbar button with the bootstrap class. Now we test it out @32:28 what happens was that it didn't work(go to app.py)-->
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+<!--part 3 @20:31 We need a way to see if the user is actually in a session to actually have buttons like register hidden and logout show up show up in the first place. Also for them to access certain pages like for instance add article or edit it. Use "session.logged" to create this -->
+      {% if session.logged_in %}
+      <li><a class="p-3" href = '/dashboard'>DashBoard</a></li>
+      <li><a class="p-3" href = '/logout'>Log Out</a></li>
+      {% else %}
+      <li><a href="/register">Register</a></li>
+<!--part 3  @12:45 add the login link to the navbar -->
+      <li><a class ='p-3' href="/login">Login</a></li>
+      {% endif %}
+
+    </ul>
+  </div>
+</nav>
+
+<!--Part 3 @22:32 The last thing we need to do is take care of, is that if we are logged out we cant see the dashboard. Though if we type it into the URL, we can access it. Obviously not good. So for this we are going to use a "decorator", it's a special kind of function that we can add to any route we want. @23:03 so what we did here is we went to "flask decorators" into google then we looked at the "sample snippets". Essentially we are doing a special type of if statement to cover this. @24:00 (go to app.py) -->

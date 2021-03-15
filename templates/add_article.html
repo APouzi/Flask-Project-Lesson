@@ -1,0 +1,21 @@
+{%extends 'layout.html' %}
+<!--Part 4 @9:56 We have the extending layout, we then put a block body start, then an h1-->
+{% block body %}
+  <h1>Add Article</h1>
+  <!--Part 4 @9:59 In here we are importing the formhelpers which is in the "includes folder" -->
+  {% from "includes/_formhelpers.html" import render_field %}
+  <!--Part 4 @10:03 We have a form with two fields. One for the title and the other for the body.It will also have a submit. -->
+  <form method = "POST" action="">
+    <div class = "form-group">
+      {{ render_field(form.title, class_= "form-control") }}  
+    </div>
+    <!--Part 4 @12:46 We want to add to here the ckeditor functionality by passing in the id value as "editor". Once we are done, we see we now have an editor in the body of the article. -->
+    <div class ="form-group">
+      {{ render_field(form.body, class_="form-control", id = "editor") }}
+    </div>
+    <p><input class = "btn btn-primary" type="submit" value="Submit">
+  </form>
+{% endblock %}
+
+<!--Part 4 @10:41 Now we run the application after saving. We go to our dashboard after logging in, add an article, we should see some success. Then we go to our terminal to access mysql and then do a "SELECT * FROM articles;" and that should print everything out. that is in the table which we should see our submission.  -->
+<!--Part 4 @11:24 He does want to implement an editor inside the actual input for the body. So that way it's not just plain text. The way he wants to do it is through a service called "ckeditor". We could download, but we don't even have to, we could just use the CDN. @11:56 copy it and (go to layout.html)-->

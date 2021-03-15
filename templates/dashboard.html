@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Dashboard <small>Welcome, {{session.username}}</small></h1>
+    <!--Part 4 @2:03 What we will now do is "add article" functionality. @2:04 He logs in to go to the dashboard. @2:11 So on dashboard.html we will add this functionality, it's going to go the href of "/add_article" which is a route that we are going to create. Under that we put an hr: -->
+    <a class = "btn btn-success" href ="/add_article">Add Article</a>
+    <hr>
+    <!--Part 4 @15:44 The articles we want to paste are going to be here. It's going to be in a table too. make sure to use "th*6" to create the th tags.The last two are going to be blank because they are for the edit/delete buttons-->
+    <table class = "table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <!--Part 4 @16:31 Here we are going to loop through all the articles and we want to put a tr and columns which are going to be td's. -->
+        {% for article in articles %}
+            <tr>
+                <td>{{article.id}}</td>
+                <td>{{article.title}}</td>
+                <td>{{article.author}}</td>
+                <td>{{article.create_date}}</td>
+                <!--Part 4 @17:30 The last two will be for edit and delete. The delete is actually going to be a form because we have to make a post request. Though the edit is going to be a link, well do the same for delete as temporary (go to app.py)--> 
+                <td><a href="edit_article/{{article.id}}" class = "btn btn-default pull-right">Edit</a></td>
+                <!--Part 5 8:25 Now we just need to do the functionality for the delete button which will be a form to request for that.  -->
+                <td>
+                    <form action="{{url_for('delete_article, id = article.id')}}" method="post"></form>
+                    <!-- @9:13 We are going to have two input forms, one is going to be hidden and the other is going to be the submit button. He says this is kind of how you fake a delete request. @9:59 We didn't create the delete article yet, so go to app.py to do that (go to app.py) -->
+                    <input type="hidden" name = "_method" value = "DELETE">
+                    <input type = "submit" value ="Delete" class="btn btn-danger">
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+<!-- part 4 00:00 Right now, the articles are coming from "data.py" and that has to change. So we are going to create a MySQL DB. @00:18 So we are going to go to the "MySQL" window and create that. First we go to our git bash terminal and type in "winpty mysql -u root " and then our password which we decided was 1234. We use winpty because we are on gitbash, otherwise use normal mysql. Then what we want to do is go into our database we already created called "myflaskapp", to do this we type "USE myflaskapp". All of the stuff to install this was in Part 2. What we then want to do is now go ahead and create the new table for the articles. " -->
+<!-- CREATE TABLE articles (id INT(11) AUTO_INCREMENT PRIMARY KEY, title VARCH 
+AR(255), author VARCHAR(100), body TEXT, create_date TIMESTAMP DEFAULT CURRENT_T
+IMESTAMP);-->
+"
+<!--Part 4 @1:55 Now if we do a "SHOW TABLES;" we will see articles and users as the database.  -->
+
+<!--Part 4 @2:50 Now lets create the "/add_article" route to the app.py sheet. (go to app.py) -->
