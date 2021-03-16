@@ -246,18 +246,18 @@ def add_article():
 @app.route('/edit_article/<string:id>', methods = ['GET','POST'])
 @is_logged_in
 def edit_article(id):
-#@1:33 before we have the form we need to fill it. So we need to do some query to actually get the article by its id and then fill in that form with whats already in that article.
+#Part 5 @1:33 before we have the form we need to fill it. So we need to do some query to actually get the article by its id and then fill in that form with whats already in that article.
     cur = mysql.connection.cursor()
 
-#2:08 Get the article by id, because the id is being passed in here. We then want to use a "fetchone" method to get the article.   
+#Part 5 2:08 Get the article by id, because the id is being passed in here. We then want to use a "fetchone" method to get the article.   
     result = cur.execute("SELECT * FROM articles WHERE id = %s", [id])
     article = cur.fetchone()
     cur.close()
 
-# 3:00 We want to use this form. 
+#Part 5 3:00 We want to use this form. 
     form = ArticleForm(request.form)
     
-# 3:12 We want to populate the fields and we can do this from here. We do this by form.title.data = article. So essentially we get the field from above and use that to grab the title and body and fill the field. 
+#Part 5 3:12 We want to populate the fields and we can do this from here. We do this by form.title.data = article. So essentially we get the field from above and use that to grab the title and body and fill the field. 
     form.title.data = article['title']
     form.body.data = article['body']
 
@@ -267,7 +267,7 @@ def edit_article(id):
         
         cur = mysql.connection.cursor()
         app.logger.info(title)
-#3:50 Now we want to do everything above, but this time we want to update the form instead of inserting. 
+#Part 5 3:50 Now we want to do everything above, but this time we want to update the form instead of inserting. 
         cur.execute ("UPDATE articles SET title=%s, body=%s WHERE id=%s",(title, body, id))
 
         mysql.connection.commit()
@@ -275,11 +275,11 @@ def edit_article(id):
 
         flash('Article Updated','success')
         return redirect(url_for('dashboard'))
-# 6:07 After all this, we then (go to edit_article)
+#Part 5 6:07 After all this, we then (go to edit_article)
     return render_template('edit_article.html', form = form)
 
 
-#10:07 Here we are adding the delete button functionality route. The id is going to get passed as well, make sure to put in the "<string:id>" to pass that in. 
+#Part 5 10:07 Here we are adding the delete button functionality route. The id is going to get passed as well, make sure to put in the "<string:id>" to pass that in. 
 @app.route("/delete_article/<string:id>") 
 @is_logged_in
 def delete_article(id):
